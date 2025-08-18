@@ -1,5 +1,7 @@
-// api/prompt.js
-const SUNA_SERVER = process.env.SUNA_SERVER_URL || 'http://43.160.250.225:8000';
+// 修正后的 Vercel API 文件 - api/prompt.js
+// 使用域名访问，确保路径带斜杠
+
+const SUNA_SERVER = process.env.SUNA_SERVER_URL || 'https://suna.manus-cloud.space';
 
 export default async function handler(req, res) {
   // 设置 CORS 头
@@ -14,7 +16,7 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === 'GET') {
-      // 获取 prompt
+      // 获取 prompt - 注意路径末尾的斜杠！
       const response = await fetch(`${SUNA_SERVER}/api/prompt/`, {
         method: 'GET',
         headers: {
@@ -33,7 +35,7 @@ export default async function handler(req, res) {
       res.status(200).send(promptContent);
 
     } else if (req.method === 'POST') {
-      // 更新 prompt
+      // 更新 prompt - 注意路径末尾的斜杠！
       const response = await fetch(`${SUNA_SERVER}/api/prompt/`, {
         method: 'POST',
         headers: {
